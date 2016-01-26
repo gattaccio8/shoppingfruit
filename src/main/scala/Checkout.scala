@@ -1,20 +1,16 @@
 import UserPrintOutMessages._
 import calculator.FruitCostCalculator
-import model.{Fruit, Orange, Apple}
-
+import UserInputReader._
+import model.Fruit
 
 object Checkout extends App {
 
   initialPrompt
   orderInput
 
-  val order = Console.in.readLine()
+  private val order: List[Fruit] = fruits()
 
-  private val fruits: List[Fruit] = order.split(",").map(f => {
-    if (f.contains("Apple")) Apple() else Orange()
-  }).toList
-
-  println(s"You ordered $fruits and the total cost => ${FruitCostCalculator(fruits)}")
+  println(s"You ordered ${order} and the total cost => ${FruitCostCalculator(order)}")
 
   Console.in.close()
   Console.flush()

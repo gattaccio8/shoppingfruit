@@ -6,9 +6,8 @@ import org.scalatest.FunSuite
 class FruitCostCalculatorSpec extends FunSuite {
 
   test("calculate the total fruit cost") {
+    val fruits = Apple() :: Apple() :: Orange() :: Apple() :: Nil
 
-    val fruit = Apple() :: Apple() :: Orange() :: Apple() :: Nil
-
-    assert(FruitCostCalculator(fruit) == 2.05)
+    assert(FruitCostCalculator(fruits) == 2.05)
   }
 }
