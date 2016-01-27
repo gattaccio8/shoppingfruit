@@ -9,7 +9,7 @@ object FruitCostCalculator {
   def buyOneGetOneFree(fruits: List[Fruit]): Double = fruits match {
     case Nil                               => 0.0
     case a :+ _ if(fruits.length % 2 == 0) => halfPrice(fruits)
-    case a1 :+ a2 :+ _                     => halfPrice(fruits.drop(1)) + fruits.head.price
+    case a :+ _                            => halfPrice(fruits.drop(1)) + fruits.head.price
     case _                                 => fullPrice(fruits)
   }
 
