@@ -9,7 +9,9 @@ Step 2
 If you run the project from an IDE the main class will be Checkout.scala
 or you can run it from terminal as the project contains an sbt jar + an sbt.sh script so you can type "./sbt.sh run"
 you will then be prompt to enter the order list in the format "Apple, Apple, Orange, Apple"
-Discount are applied as for the latest requirements in step 2 so from the project directory:
+Discount are applied as for the latest requirements in step 2.
+
+From the project directory:
 
 $ ./sbt.sh run
 Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
