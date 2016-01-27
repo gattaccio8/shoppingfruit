@@ -10,7 +10,7 @@ object Checkout extends App {
 
   private val order: List[Fruit] = fruits()
 
-  println(s"You ordered ${order} and the total cost => ${FruitCostCalculator(order)}")
+  println(s"You ordered ${order.mkString("[ ", ", ", " ]")} and the total cost => ${FruitCostCalculator(order)}")
 
   Console.in.close()
   Console.flush()
