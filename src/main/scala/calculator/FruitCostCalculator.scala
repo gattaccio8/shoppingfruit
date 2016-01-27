@@ -5,11 +5,13 @@ import model.{Orange, Apple, Fruit}
 
 object FruitCostCalculator {
 
-  def apply(fruits: List[Fruit], offers: Seq[Offer]) =
-    if(offers.size > 0)
-      offers.filter(f => isAnOrange(f._1)).head._2(oranges(fruits)) + offers.filter(f => isAnApple(f._1)).head._2(apples(fruits))
-    else
-      fullPrice(fruits)
+  def apply(fruits: List[Fruit], offers: Seq[Offer]): Double = applyOffers(fruits, offers).fold(fullPrice(fruits))(identity)
+
+  def applyOffers(fruits: List[Fruit], offers: Seq[Offer]): Option[Double] = for {
+    orange <- offers.find(f => isAnOrange(f._1))
+    apple <- offers.find(f => isAnApple(f._1))
+  } yield orange._2(oranges(fruits)) + apple._2(apples(fruits))
+
 
   def buyOneGetOneFree(fruits: List[Fruit]): Double = fruits match {
     case Nil                               => 0.0
