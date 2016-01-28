@@ -10,7 +10,7 @@ object FruitCostCalculator {
   def applyOffers(fruits: List[Fruit], offers: Seq[Offer]): Option[Double] = for {
     orange <- offers.find(f => isAnOrange(f._1))
     apple <- offers.find(f => isAnApple(f._1))
-  } yield orange._2(oranges(fruits)) + apple._2(apples(fruits))
+  } yield orange._2(pickFruit(fruits, isAnOrange)) + apple._2(pickFruit(fruits, isAnApple))
 
 
   def buyOneGetOneFree(fruits: List[Fruit]): Double = fruits match {
@@ -29,9 +29,9 @@ object FruitCostCalculator {
   private def threeForThePriceOfTwo(fruits: List[Fruit]): Double =
     fullPrice(fruits) - fullPrice(fruits.zip (Stream from 1).filter(f => f._2 % 3 == 0).map(_._1))
 
-  private def apples: (List[Fruit]) => List[Fruit] = (fruits: List[Fruit]) => fruits.filter(isAnApple)
-  private def oranges: (List[Fruit]) => List[Fruit] = (fruits: List[Fruit]) => fruits.filter(isAnOrange)
+  private def pickFruit: (List[Fruit], (Fruit) => Boolean) => List[Fruit] =
+    (fruits: List[Fruit], ft: (Fruit) => Boolean) => fruits.filter(ft)
 
-  private def isAnApple: (Fruit) => Boolean = (f: Fruit) => f.name.equals(Apple().name)
-  private def isAnOrange: (Fruit) => Boolean = (f: Fruit) => f.name.equals(Orange().name)
+  private def isAnApple: (Fruit) => Boolean = (f: Fruit) => f == Apple()
+  private def isAnOrange: (Fruit) => Boolean = (f: Fruit) => f == Orange()
 }
