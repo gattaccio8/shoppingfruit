@@ -30,7 +30,7 @@ object FruitCostCalculator {
     fullPrice(fruits) - fullPrice(fruits.zip (Stream from 1).filter(f => f._2 % 3 == 0).map(_._1))
 
   private def pickFruit: (List[Fruit], (Fruit) => Boolean) => List[Fruit] =
-    (fruits: List[Fruit], ft: (Fruit) => Boolean) => fruits.filter(ft)
+    (fruits: List[Fruit], predicate: (Fruit) => Boolean) => fruits.filter(predicate)
 
   private def isAnApple: (Fruit) => Boolean = (f: Fruit) => f == Apple()
   private def isAnOrange: (Fruit) => Boolean = (f: Fruit) => f == Orange()
