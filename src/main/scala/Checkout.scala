@@ -1,4 +1,3 @@
-import UserInputReader._
 import UserPrintOutMessages._
 import calculator.FruitCostCalculator
 import calculator.FruitOffer._
@@ -9,10 +8,11 @@ object Checkout extends App {
   initialPrompt
   orderInput
 
-  private val order: List[Fruit] = fruits()
-  private val orderList = order.mkString("[ ", ", ", " ]")
+  private val userInputReaderService: UserInputReaderService = new UserInputReaderService {}
+  private val userInputService: UserInputReader = new UserInputReader(userInputReaderService)
+  private val order: List[Fruit] = userInputService.fruitOrder
 
-  println(s"You ordered ${orderList} and the total cost => ${FruitCostCalculator(order, offers)}")
+  println(s"You ordered ${order.mkString("[ ", ", ", " ]")} and the total cost is => ${FruitCostCalculator(order, offers)}")
 
   Console.in.close()
   Console.flush()

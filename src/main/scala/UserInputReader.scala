@@ -1,12 +1,13 @@
-import java.io.InputStream
+import model.{Apple, Fruit, Orange}
 
-import model.{Fruit, Orange, Apple}
+trait UserInputReaderService {
+  def read(): String = scala.io.StdIn.readLine
+}
 
-object UserInputReader {
 
-  def fruits(input: String = read()): List[Fruit] = input.split(",").map(typeOfFruit).toList
+class UserInputReader(userInputReaderService: UserInputReaderService) {
 
-  private def read(inputStream: InputStream = System.in): String = scala.io.StdIn.readLine
+  def fruitOrder: List[Fruit] = userInputReaderService.read().split(",").map(typeOfFruit).toList
 
   private def typeOfFruit(f: String) = if (f.contains("Apple")) Apple() else Orange()
 }
