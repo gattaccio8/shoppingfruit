@@ -1,13 +1,14 @@
 package calculator
 
-import model.{Fruit, Orange, Apple}
-import FruitCostCalculator._
+import calculator.FruitCostCalculator._
+import model.Fruit
 
 object FruitOffer {
 
-  type Offer = (Fruit, (List[Fruit]) => Double)
+  type Offer = List[Fruit] => Double
 
-  private val appleOffer: Offer = (Apple(), buyOneGetOneFree)
-  private val orangeOffer: Offer = (Orange(), buyThreePayTwo)
-  val offers: Seq[(Fruit, (List[Fruit]) => Double)] = Seq(appleOffer, orangeOffer)
+  val appleOffer: Offer = buyOneGetOneFree
+  val orangeOffer: Offer = buyThreePayTwo
+
+  val offers: Seq[List[Fruit] => Double] = Seq(appleOffer, orangeOffer)
 }
