@@ -14,19 +14,12 @@ Discount are applied as for the latest requirements in step 2.
 From the project directory:
 
 $ ./sbt.sh run
-Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
-Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=256m; support was removed in 8.0
-[info] Loading project definition from /Users/gattopas/dev/projects/shoppingfruit/project
-[info] Set current project to shoppingfruit (in build file:/Users/gattopas/dev/projects/shoppingfruit/)
-[info] Compiling 1 Scala source to /Users/gattopas/dev/projects/shoppingfruit/target/scala-2.11/classes...
-[info] Running Checkout
 In this shop we only sell apples and oranges
 
 Enter your fruit order in a format like: Apple, Apple, Orange, Apple
 
 Apple, Apple, Orange, Apple
 You ordered [ Apple(Apple,0.6), Apple(Apple,0.6), Orange(Orange,0.25), Apple(Apple,0.6) ] and the total cost => 1.45
-
 
 
 ########################################## git tags ##############################################

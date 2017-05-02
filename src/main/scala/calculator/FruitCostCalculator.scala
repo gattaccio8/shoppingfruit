@@ -25,7 +25,10 @@ object FruitCostCalculator {
   private def halfPrice(fruits: List[Fruit]): Double = fullPrice(fruits) / 2
 
   private def threeForThePriceOfTwo(fruits: List[Fruit]): Double =
-    fullPrice(fruits) - fullPrice(fruits.zip (Stream from 1).filter(tuple => tuple._2 % 3 == 0).map(_._1))
+    fullPrice(fruits) - fullPrice(zipped(fruits).map(_._1))
+
+  private def zipped(fruits: List[Fruit]): List[(Fruit, Int)] =
+    fruits.zip(Stream from 1).filter(_._2 % 3 == 0)
 
   private def isAnApple: Fruit => Boolean = (fruit: Fruit) => fruit == Apple()
   private def isAnOrange: Fruit => Boolean = (fruit: Fruit) => fruit == Orange()

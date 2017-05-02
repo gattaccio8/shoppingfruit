@@ -12,7 +12,7 @@ object Checkout extends App {
   private val userInputService: UserInputReader = new UserInputReader(userInputReaderService)
   private val order: List[Fruit] = userInputService.fruitOrder
 
-  println(s"You ordered ${order.mkString("[ ", ", ", " ]")} and the total cost is => ${FruitCostCalculator(order, offers)}")
+  println(s"You ordered ${order.map(_.name).mkString("[ ", ", ", " ]")} and the total cost is => ${FruitCostCalculator(order, offers)}")
 
   Console.in.close()
   Console.flush()
