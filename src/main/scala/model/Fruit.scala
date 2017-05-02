@@ -1,6 +1,6 @@
 package model
 
-trait Fruit {
+sealed trait Fruit {
   val name: String
   val price: Double
 }

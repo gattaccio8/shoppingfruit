@@ -7,12 +7,6 @@ object FruitCostCalculator {
 
   def apply(fruits: List[Fruit], offers: Seq[Offer]): Double = applyOffers(fruits, offers).fold(fullPrice(fruits))(identity)
 
-  def applyOffers(fruits: List[Fruit], offers: Seq[Offer]): Option[Double] = for {
-    orange <- offers.find(f => isAnOrange(f._1))
-    apple <- offers.find(f => isAnApple(f._1))
-  } yield orange._2(pickFruit(fruits, isAnOrange)) + apple._2(pickFruit(fruits, isAnApple))
-
-
   def buyOneGetOneFree(fruits: List[Fruit]): Double = fruits match {
     case Nil                               => 0.0
     case a :+ _ if(fruits.length % 2 == 0) => halfPrice(fruits)
@@ -22,7 +16,12 @@ object FruitCostCalculator {
 
   def buyThreePayTwo(fruits: List[Fruit]): Double = if(fruits.isEmpty) 0.0 else threeForThePriceOfTwo(fruits)
 
-  def fullPrice(fruits: List[Fruit]): Double = fruits.map(_.price).fold(0.0)(_ + _)
+  def applyOffers(fruits: List[Fruit], offers: Seq[Offer]): Option[Double] = for {
+    orange <- offers.find(f => isAnOrange(f._1))
+    apple <- offers.find(f => isAnApple(f._1))
+  } yield orange._2(pickFruit(fruits, isAnOrange)) + apple._2(pickFruit(fruits, isAnApple))
+
+  private def fullPrice(fruits: List[Fruit]): Double = fruits.map(_.price).fold(0.0)(_ + _)
 
   private def halfPrice(fruits: List[Fruit]): Double = fullPrice(fruits) / 2
 
